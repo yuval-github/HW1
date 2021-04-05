@@ -1,5 +1,4 @@
-from data import filter_by_feature,filter_by_threshold,print_details
-
+from data import *
 
 def sum(values):
     """returns the sum of all numbers in values (a list)"""
@@ -47,5 +46,4 @@ def population_statistics(feature_description, data, treatment, target, threshol
     new_data = data
     for feature in population:
         new_data = filter_by_feature(new_data, feature[0], [feature[1]])[0]
-    new_data = filter_by_threshold(new_data, treatment, threshold, is_above)[0]
-    print_details(new_data, [target], statistic_functions)
+    print_details(filter_by_threshold(new_data, treatment, target, threshold, is_above), [target], statistic_functions)
