@@ -36,14 +36,6 @@ def filter_by_feature(data, feature, values):
     return data1, data2
 
 
-def filter_by_threshold(data, treatment, target, threshold, is_above):
-    """returns a dictionary that contains the hours in which
-        the value of feature is above or below the threshold , depends
-        on the value of is_above"""
-    z = zip(data[treatment], data[target])
-    return {target: [x[1] for x in list(filter(lambda x: (is_above ^ (x[0] <= threshold)), z))]}
-
-
 def print_details(data, features, statistic_functions):
     """prints the results of the functions in statistic_functions
     on the values of features in data"""

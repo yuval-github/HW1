@@ -46,4 +46,6 @@ def population_statistics(feature_description, data, treatment, target, threshol
     new_data = data
     for feature in population:
         new_data = filter_by_feature(new_data, feature[0], [feature[1]])[0]
-    print_details(filter_by_threshold(new_data, treatment, target, threshold, is_above), [target], statistic_functions)
+    z = zip(new_data[treatment], new_data[target])
+    new_data = {target: [x[1] for x in list(filter(lambda x: (is_above ^ (x[0] <= threshold)), z))]}
+    print_details(new_data, [target], statistic_functions)
