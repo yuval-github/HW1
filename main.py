@@ -4,12 +4,15 @@ from data import load_data
 
 
 def main(argv):
-    """argv: main.py path_to_data important_features
+    """
     question1 : prints population_statistics about Summer, Holiday and All
     of the features hum, t1 and cnt
     question2 : prints population_statistics about Winter holiday and weekday,
     on the cnt feature, with a threshold of a 13.0, one time above the threshold
-    and one time below it"""
+    and one time below it
+    :param argv: main.py path_to_data important_features
+    :return: none
+    """
     path = argv[1]
     features = argv[2]
     data = load_data(path, features)

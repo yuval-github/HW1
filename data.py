@@ -2,9 +2,13 @@ import pandas
 
 
 def load_data(path, features):
-    """returns a dictionary, the keys are features and the
+    """
+    :param path: path to database
+    :param features: list of strings,
+    :return: a dictionary, the keys are features and the
     values are lists of numbers from the data in path that
-    match the features"""
+    match the features
+    """
     df = pandas.read_csv(path)
     data = df.to_dict(orient="list")
     features.split(", ")
@@ -19,9 +23,15 @@ def load_data(path, features):
 
 
 def filter_by_feature(data, feature, values):
-    """returns two dictionaries, data1 contains the hours in which
+    """
+    :param data: a dictionary, keys are strings and
+    the values are lists of floats
+    :param feature: a string
+    :param values: a list of floats
+    :return: two dictionaries, data1 contains the hours in which
     the category feature value is from values and data2 is what ever
-    is left in data"""
+    is left in data
+    """
     data1 = {}
     data2 = {}
     for key in data.keys():
@@ -37,8 +47,15 @@ def filter_by_feature(data, feature, values):
 
 
 def print_details(data, features, statistic_functions):
-    """prints the results of the functions in statistic_functions
-    on the values of features in data"""
+    """
+    prints the results of the functions in statistic_functions
+    on the values of features in data
+    :param data: a dictionary, keys are strings (features) and
+    the values are lists of floats
+    :param features: a list of strings
+    :param statistic_functions: a list of functions
+    :return: none
+    """
     for feature in data.keys():
         if feature in features:
             values = data[feature]

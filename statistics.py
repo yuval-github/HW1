@@ -1,7 +1,10 @@
 from data import *
 
 def sum(values):
-    """returns the sum of all numbers in values (a list)"""
+    """
+    :param values: a list of floats
+    :return: the sum of all numbers in values
+    """
     answer = 0
     for value in values:
         answer += value
@@ -9,39 +12,56 @@ def sum(values):
 
 
 def mean(values):
-    """returns the mean of all numbers in values (a list)"""
+    """
+    :param values: a list of floats
+    :return: the mean of all numbers in values
+    """
     return int(len(values) > 0) and sum(values) / len(values)
 
 
 def median(values):
-    """returns the median of all numbers in values (a list)"""
+    """
+    :param values: a list of floats
+    :return: the median of all numbers in values
+    """
     sorted_values = sorted(values)
     n = len(sorted_values)
-    if n == 0: return 0
     return (sorted_values[n // 2 - (n%2 == 0)] + sorted_values[n // 2]) / 2
 
 
 def decode_feature_description(feature_description):
     """
-    returns a list of all features from feature_description (a string)
+    :param feature_description: a string
+    :return: a list of all features from feature_description
     word_to_feature - a dict, the keys are adjectives and the values
     are (category, value of this adjective in that category)
     """
     features = feature_description.split(" ")
-    word_to_feature = {"spring": ("season", 0),"summer": ("season", 1),"fall": ("season", 2),
+    WORD_TO_FEATURE = {"spring": ("season", 0),"summer": ("season", 1),"fall": ("season", 2),
                        "winter": ("season", 3),"holiday": ("is_holiday", 1),"weekday": ("is_holiday", 0)}
     translated_features = []
     for feature in features:
-        if feature.lower() in word_to_feature.keys():
-            translated_features.append(word_to_feature[feature.lower()])
+        if feature.lower() in WORD_TO_FEATURE.keys():
+            translated_features.append(WORD_TO_FEATURE[feature.lower()])
     return translated_features
 
 
 def population_statistics(feature_description, data, treatment, target, threshold, is_above
                           , statistic_functions):
-    """prints the results of statistic functions on the target feature values of
+    """
+    prints the results of statistic functions on the target feature values of
     hours in which the feature_description fits to the category and the treatment feature
-    is above of below the threshold, depends on the value of is_above"""
+    is above of below the threshold, depends on the value of is_above
+    :param feature_description: a string
+    :param data: a dictionary, keys are strings and
+    the values are lists of floats
+    :param treatment: a string
+    :param target: a string
+    :param threshold: a float
+    :param is_above: a boolean
+    :param statistic_functions: a list of functions
+    :return: none
+    """
     population = decode_feature_description(feature_description)
     new_data = data
     for feature in population:
